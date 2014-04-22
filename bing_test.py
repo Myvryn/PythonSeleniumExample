@@ -16,7 +16,8 @@ search_terms = ['selenium',
                 'esp guitars',
                 'classic rock',
                 'Mötley Crüe',
-                'python using selenium']
+                'python using selenium',
+                'cake software']
 for search_term in search_terms:
     bing_home_page.enter_text_in_search_box(search_term, driver)
     bing_home_page.click_the_go_button(driver)
