@@ -15,7 +15,8 @@ assert "Bing" in driver.title
 search_terms = ['selenium',
                 'esp guitars',
                 'classic rock',
-                'Mötley Crüe']
+                'Mötley Crüe',
+                'python using selenium']
 for search_term in search_terms:
     bing_home_page.enter_text_in_search_box(search_term, driver)
     bing_home_page.click_the_go_button(driver)
