@@ -5,7 +5,7 @@ url = {
 }
 
 menu_bar = {
-    'link_images': 'id.scpt0',
+    'link_images': 'link_text.IMAGES',
     'link_videos': 'id.scpt1',
     'link_maps': 'id.scpt2',
     'link_news': 'id.scpt3',
@@ -19,6 +19,10 @@ menu_bar = {
 main_page = {
     'textbox_search': 'id.sb_form_q',
     'button_go': 'id.sb_form_go'
+}
+
+results_page = {
+    'image_results_section': 'id.dg_c'
 }
 
 
@@ -47,9 +51,20 @@ def click_the_go_button(driver):
     return
 
 
+def click_the_images_link(driver):
+    images_link = get_selenium_element(menu_bar['link_images'], driver)
+    images_link.click()
+    return
+
+
 def is_search_term_in_title(search_term, driver):
     """I would normally put this in a bing_result_page 'class' but it fits here for this example"""
     return search_term + " - Bing" == driver.title
+
+
+def is_image_results_section_present(driver):
+    images_exist = len(driver.find_elements_by_class_name("dg_u")) != 0
+    return images_exist
 
 
 def get_selenium_element(element, driver):
@@ -58,6 +73,13 @@ def get_selenium_element(element, driver):
     item_id = element.split('.')[1]
     if item_type == 'id':
         element = driver.find_element_by_id(item_id)
+    elif item_type == 'link_text':
+        element = driver.find_element_by_link_text(item_id)
+    elif item_type == 'class':
+        element = driver.find_element_by_class_name(item_id)
     else:
         element = driver.find_element_by_name(item_id)
     return element
+
+
+
