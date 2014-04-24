@@ -2,9 +2,10 @@ __author__ = 'EddyJones'
 
 import utilities
 import unittest
-import bing_home_page
+import bing_page
+import common_elements
 
-url = bing_home_page.url['start_url']
+url = bing_page.url['start_url']
 
 
 class BingTest(unittest.TestCase):
@@ -26,29 +27,29 @@ class BingTest(unittest.TestCase):
                         'python using selenium',
                         'cake software']
         for search_term in search_terms:
-            bing_home_page.enter_text_in_search_box(search_term, self.driver)
-            bing_home_page.click_the_go_button(self.driver)
-            assert bing_home_page.is_search_term_in_title(search_term, self.driver)
+            common_elements.enter_text_in_search_box(search_term, self.driver)
+            common_elements.click_the_go_button(self.driver)
+            assert bing_page.is_search_term_in_title(search_term, self.driver)
 
     def test_search_for_images(self):
         self.driver.get(url)
-        bing_home_page.click_the_images_link(self.driver)
+        common_elements.click_the_images_link(self.driver)
         search_terms = ['star wars',
                         'star trek',
                         'game of thrones']
         for search_term in search_terms:
-            bing_home_page.enter_text_in_search_box(search_term, self.driver)
-            bing_home_page.click_the_go_button(self.driver)
-            assert bing_home_page.is_image_results_section_present(self.driver)
+            common_elements.enter_text_in_search_box(search_term, self.driver)
+            common_elements.click_the_go_button(self.driver)
+            assert bing_page.is_image_results_section_present(self.driver)
 
     def test_search_for_no_images(self):
         self.driver.get(url)
-        bing_home_page.click_the_images_link(self.driver)
+        common_elements.click_the_images_link(self.driver)
         search_terms = ['@$!%$!@']
         for search_term in search_terms:
-            bing_home_page.enter_text_in_search_box(search_term, self.driver)
-            bing_home_page.click_the_go_button(self.driver)
-            self.assertFalse(bing_home_page.is_image_results_section_present(self.driver))
+            common_elements.enter_text_in_search_box(search_term, self.driver)
+            common_elements.click_the_go_button(self.driver)
+            self.assertFalse(bing_page.is_image_results_section_present(self.driver))
 
 
 
