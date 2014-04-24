@@ -11,6 +11,7 @@ def is_search_term_in_title(search_term, driver):
 
 
 def is_image_results_section_present(driver):
+    # noinspection PyArgumentList
     return len(driver.find_elements_by_class_name("dg_u")) != 0
 
 
